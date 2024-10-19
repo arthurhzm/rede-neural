@@ -54,9 +54,9 @@ def main():
         if now.second == 50:
             newdata = fetch_data()
             insert_data(newdata)
-            time.sleep(60)  # Evita que rode várias vezes no segundo 50
+            time.sleep(60)
         else:
-            time.sleep(1)  # Espera 1 segundo antes de verificar de novo
+            time.sleep(1)
 
 if __name__ == "__main__":
     main()
