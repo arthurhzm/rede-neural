@@ -45,6 +45,7 @@ def insert_data(data):
     for row in data:
         insert_row(cursor, row)
     conn.commit()
+    print("Novos resultados inseridos")
 
 def main():
     load_dotenv()
