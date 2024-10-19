@@ -2,6 +2,8 @@ from config.db import get_connection
 from dotenv import load_dotenv
 import os
 import requests
+import time
+from datetime import datetime
 
 def fetch_data():
     response = requests.get(os.getenv("BLAZE_DOUBLE_URL"))
@@ -46,9 +48,14 @@ def insert_data(data):
 
 def main():
     load_dotenv()
-    newdata = fetch_data()
-    insert_data(newdata)
-    
+    while True:
+        now = datetime.now()
+        if now.second == 50:
+            newdata = fetch_data()
+            insert_data(newdata)
+            time.sleep(60)  # Evita que rode várias vezes no segundo 50
+        else:
+            time.sleep(1)  # Espera 1 segundo antes de verificar de novo
 
 if __name__ == "__main__":
     main()
