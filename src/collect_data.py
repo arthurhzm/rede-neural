@@ -7,6 +7,8 @@ from datetime import datetime
 
 def fetch_data():
     response = requests.get(os.getenv("BLAZE_DOUBLE_URL"))
+    if not response:
+        return
     return response.json()
     
 def insert_row(cursor, row):
